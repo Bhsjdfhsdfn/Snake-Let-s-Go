@@ -33,14 +33,21 @@ public class Food extends Point{
 	public boolean isFoodEated(Snake snake) {			
 		return 	this.equals(snake.getHead());
 	}
-	
-	public void drawMe(Graphics g) {
-		if(foodColor==null) {
-			g.setColor(Color.WHITE);
-		}else {
-			g.setColor(foodColor);
+	//i is used to print out different foods.
+	public void drawMe(Graphics g, int i) {
+		Image img;
+		if(i==0){
+			img = Toolkit.getDefaultToolkit().getImage("img/timg-3.jpeg");
+		}else if(i==1){
+			img = Toolkit.getDefaultToolkit().getImage("img/timg-3.jpeg");
+		}else if(i==2){
+			img = Toolkit.getDefaultToolkit().getImage("img/timg-4.jpeg");
+		}else if (i==3) {
+			img = Toolkit.getDefaultToolkit().getImage("img/timg.jpeg");
+		}else{
+			img = Toolkit.getDefaultToolkit().getImage("img/timg.png");
 		}
 		
-		g.fill3DRect(x*Main.UnitSize, y*Main.UnitSize, Main.UnitSize, Main.UnitSize, true);
+		g.drawImage(img, x*Main.UnitSize, y*Main.UnitSize, Main.UnitSize, Main.UnitSize, null);
 	}
 }
