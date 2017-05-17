@@ -1,11 +1,12 @@
-package Entities;
+ package Entities;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.util.Set;
 
 import Game.Main;
-
+import Listener.SnakeListener;
 
 public class Food extends Point{
 	/**
@@ -15,7 +16,8 @@ public class Food extends Point{
 
 	private Color foodColor;
 	
-	//food's color
+	
+
 	public void setFoodColor(Color foodColor) {
 		this.foodColor = foodColor;
 	}
@@ -27,7 +29,7 @@ public class Food extends Point{
 	public void newFood(Point p) {
 		setLocation(p);
 	}
-	//To know if the snake eat the food
+	
 	public boolean isFoodEated(Snake snake) {			
 		return 	this.equals(snake.getHead());
 	}

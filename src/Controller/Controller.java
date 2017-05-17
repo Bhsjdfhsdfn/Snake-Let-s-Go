@@ -1,10 +1,13 @@
 package Controller;
 
+
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-
+import java.util.LinkedList;
+import java.util.Set;
 
 import Entities.Food;
 import Entities.Ground;
@@ -22,8 +25,12 @@ public class Controller extends KeyAdapter implements SnakeListener{
 	private MainPanel mainPanel;
 	private GameMenu gameMenu;
 	private BottonPanel bottonPanel;
+<<<<<<< HEAD
 	private MusicDemo musicDemo; 
 		
+=======
+	private MusicDemo musicDemo;
+>>>>>>> origin/master
 	
 	
 	public Controller(Snake snake, Food food, Ground ground,MainPanel mainPanel,GameMenu gameMenu,BottonPanel bottonPanel) {
@@ -40,15 +47,16 @@ public class Controller extends KeyAdapter implements SnakeListener{
 	
 
 	public void init() {
+<<<<<<< HEAD
 		
+=======
+		//play the music
+>>>>>>> origin/master
 		musicDemo=new MusicDemo();
 		
 		bottonPanel.getStartButton().addActionListener(new startHandler());
 		bottonPanel.getPauseButton().addActionListener(new pauseHandler());
 		bottonPanel.getEndButton().addActionListener(new endHandler());
-		
-		
-
 		
 		gameMenu.getMapItem1().addActionListener(new mapItem1Handler());
 		gameMenu.getMapItem2().addActionListener(new mapItem2Handler());
@@ -57,7 +65,6 @@ public class Controller extends KeyAdapter implements SnakeListener{
 		
 		bottonPanel.getStartButton().setEnabled(true);
 	}
-
 
 	public Snake getSnake() {
 		return snake;
@@ -107,6 +114,7 @@ public class Controller extends KeyAdapter implements SnakeListener{
 		}
 	}
 
+	
 	@Override
 	public void snakeMoved(Snake snake) {
 	
@@ -114,7 +122,27 @@ public class Controller extends KeyAdapter implements SnakeListener{
 		
 		if(food.isFoodEated(snake)) {
 			snake.eatFood();
-			food.newFood(ground.getPoint());
+			
+			//solve the problem that the new food show on the snake body
+			LinkedList<Point> temp=snake.getNode();
+			Point p=ground.getPoint();
+			boolean isOnSnake=true;
+			while(isOnSnake)
+			{
+				for(int i=0;i<temp.size();i++)
+				{
+					if(p==temp.get(i))
+					{
+						isOnSnake=true;
+						break;
+					}
+					if(i==temp.size()-1 && p!=temp.get(i))
+					{
+						isOnSnake=false;
+					}
+				}
+			}
+			food.newFood(p);
 			
 			bottonPanel.repaint();
 			setScore();		
@@ -160,8 +188,13 @@ public class Controller extends KeyAdapter implements SnakeListener{
 		bottonPanel.repaint();
 	}
 
-	
-
+	public void startGame(){
+		mainPanel.requestFocus(true);
+		snake.clear();
+		snake.init();
+		snake.begin();
+		newGame();
+	}
 	
 
 	class startHandler implements ActionListener {
@@ -182,6 +215,7 @@ public class Controller extends KeyAdapter implements SnakeListener{
 
 	class pauseHandler implements ActionListener {
 
+		@override
 		public void actionPerformed(ActionEvent e) {
 			mainPanel.requestFocus(true);
 			snake.changePause();
@@ -210,27 +244,14 @@ public class Controller extends KeyAdapter implements SnakeListener{
 		}
 		
 	}
-	
-	
 
-
-	/*
-	class spItemHandler implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			snake.setSleepTime(600);
-			
-		}
-		
-	}
-*/
 	
 	class mapItem1Handler implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			ground.setMapType(1);
+			startGame();
 			
 		}
 		
@@ -241,6 +262,7 @@ public class Controller extends KeyAdapter implements SnakeListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			ground.setMapType(2);
+			startGame();
 			
 		}
 		
@@ -251,6 +273,7 @@ public class Controller extends KeyAdapter implements SnakeListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			ground.setMapType(3);
+			startGame();
 			
 		}
 		

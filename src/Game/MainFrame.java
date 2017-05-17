@@ -23,23 +23,19 @@ public class MainFrame extends JFrame {
 
 	}
 
-	
-	
-	private MainPanel gamePanel;
+	private MainPanel mainPanel;
 	private GameMenu gameMenu;
 	private Snake snake;
-	//private Food food;
-	//private Ground ground;
-	private Controller controller;	
+	private Controller controller;
 	private JPanel buttonPanel;
 
 	
-	
 	public MainFrame(Controller c) {
+		
 		this.controller = c;
 		snake = controller.getSnake();
 		gameMenu = controller.getGameMenu();
-		gamePanel = controller.getGamePanel();
+		mainPanel = controller.getGamePanel();
 		buttonPanel = controller.getBottonPanel();
 		
 		setTitle("Snake,Let's Go!");
@@ -50,7 +46,7 @@ public class MainFrame extends JFrame {
 		Container contentPane = this.getContentPane(); 		
 		this.setJMenuBar(gameMenu);
 		
-		contentPane.add(gamePanel);
+		contentPane.add(mainPanel);
 		contentPane.add(buttonPanel);
 		
 		setResizable(false);
@@ -62,11 +58,14 @@ public class MainFrame extends JFrame {
 				/ 2 - this.getHeight() / 2);
 		
 		
-		gamePanel.addKeyListener(controller);
+		mainPanel.addKeyListener(controller);
 		snake.addSnakeListener(controller);	
 		controller.newGame();
-		
-		
+	}
+	
+	public void setController(Controller controller) {
+		this.controller = controller;
 	}
 	
 }
+
