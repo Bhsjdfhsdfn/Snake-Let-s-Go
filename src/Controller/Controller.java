@@ -12,6 +12,7 @@ import Entities.Snake;
 import Game.BottonPanel;
 import Game.GameMenu;
 import Game.MainPanel;
+import Game.MusicDemo;
 import Listener.SnakeListener;
 
 public class Controller extends KeyAdapter implements SnakeListener{
@@ -21,6 +22,8 @@ public class Controller extends KeyAdapter implements SnakeListener{
 	private MainPanel mainPanel;
 	private GameMenu gameMenu;
 	private BottonPanel bottonPanel;
+	private MusicDemo musicDemo; 
+		
 	
 	
 	public Controller(Snake snake, Food food, Ground ground,MainPanel mainPanel,GameMenu gameMenu,BottonPanel bottonPanel) {
@@ -37,6 +40,9 @@ public class Controller extends KeyAdapter implements SnakeListener{
 	
 
 	public void init() {
+		
+		musicDemo=new MusicDemo();
+		
 		bottonPanel.getStartButton().addActionListener(new startHandler());
 		bottonPanel.getPauseButton().addActionListener(new pauseHandler());
 		bottonPanel.getEndButton().addActionListener(new endHandler());
@@ -250,5 +256,5 @@ public class Controller extends KeyAdapter implements SnakeListener{
 		
 	}
 
-	
+	//huvyvcfcv
 }
