@@ -1,12 +1,3 @@
-package Entities;
-
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Point;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Set;
-
 import Game.Main;
 import Listener.SnakeListener;
 
@@ -20,18 +11,17 @@ public class Snake {
 	
 	
 	private Set<SnakeListener> listeners = new HashSet<SnakeListener>();
-	
+
 	private LinkedList<Point> node = new LinkedList<Point>();
-	
-	private boolean alive;					
+
+	private boolean alive;
 	private boolean pause;					
 	private int newDirection,oldDirection;	
-	private Point oldTail;								
-	private int foodcount = 0;	
+	private Point oldTail;					
+	private int foodcount = 0;
 	private Color headColor;
 	private Color bodyColor;
 	private int sleepTime;
-	private int foodNum=new Random().nextInt(5);
 	
 	public Thread t=null;
 	
@@ -162,17 +152,12 @@ public class Snake {
 	public void eatFood() {		
 		node.addLast(oldTail);
 		foodcount++;
-		foodNum = new Random().nextInt(5);
 		
 		//加速
 		if(sleepTime>30)
 		{
-			sleepTime -= 20;
+			sleepTime = 650-foodcount*15;
 		}
-	}
-	
-	public int getFoodNum(){
-		return foodNum;
 	}
 	
 	public int getFoodCount() {
