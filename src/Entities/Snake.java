@@ -32,6 +32,16 @@ public class Snake {
 	private int sleepTime;
 	private int foodcount = 0;	
 	
+	public Thread t=null;
+	public LinkedList<Point> getNode(){
+		return node;
+	}
+	public int getFoodcount(){
+		return foodcount;
+	}
+	public void setAlive(boolean alive){
+		this.foodcount = alive;
+	}
 	public boolean isalive() {
 		return alive;
 	}
@@ -65,9 +75,7 @@ public class Snake {
 		alive = true;
 		pause = false;
 		
-		if(sleepTime==0) {
-			sleepTime = 300;
-		}
+		sleepTime = 650;
 	}
 	
 	//清空蛇的节点
@@ -150,7 +158,12 @@ public class Snake {
 		node.addLast(oldTail);
 		foodcount++;
 	}
-	
+	//speed up
+	if(sleepTime>30)
+	{
+		sleepTime = 650-foodcount*15;
+	}
+}
 	
 	public int getFoodCount() {
 		return foodcount;
@@ -213,7 +226,7 @@ public class Snake {
 				try {	
 					Thread.sleep(sleepTime);
 				} catch (InterruptedException e) {
-					e.printStackTrace();
+					//e.printStackTrace();
 				}
 			}
 		}
@@ -222,7 +235,8 @@ public class Snake {
 	
 	
 	public void begin() {
-		new Thread(new SnakeDriver()).start();
+		t=new Thread(new SnakeDriver()).start();
+		t.start();
 		
 	}
 
@@ -246,11 +260,6 @@ public class Snake {
 		if(sleepTime<700) {
 			sleepTime+=20;
 		}
-	}
-
-	public LinkedList<Point> node() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }
