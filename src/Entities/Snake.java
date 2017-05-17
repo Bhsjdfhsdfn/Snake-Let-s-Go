@@ -27,21 +27,30 @@ public class Snake {
 	private boolean pause;					
 	private int newDirection,oldDirection;	
 	private Point oldTail;								
+	private int foodcount = 0;	
 	private Color headColor;
 	private Color bodyColor;
 	private int sleepTime;
-	private int foodcount = 0;	
+	private int foodNum=new Random().nextInt(5);
 	
 	public Thread t=null;
-	public LinkedList<Point> getNode(){
+	
+	public LinkedList<Point> getNode() {
 		return node;
 	}
-	public int getFoodcount(){
+	
+	public int getFoodcount() {
 		return foodcount;
 	}
-	public void setAlive(boolean alive){
-		this.foodcount = alive;
+	
+	public void setAlive(boolean alive) {
+		this.alive = alive;
 	}
+
+	public void setFoodcount(int foodcount) {
+		this.foodcount = foodcount;
+	}
+	
 	public boolean isalive() {
 		return alive;
 	}
@@ -78,7 +87,6 @@ public class Snake {
 		sleepTime = 650;
 	}
 	
-	//清空蛇的节点
 	public void clear() {
 		node.clear();
 	}
@@ -96,7 +104,6 @@ public class Snake {
 	}
 
 	
-	//改变暂停的状态
 	public void changePause() {
 		pause = !pause;
 	}
@@ -110,7 +117,7 @@ public class Snake {
 		if(!(oldDirection + newDirection==0)) {
 			oldDirection = newDirection ;
 		}
-		//去尾
+		
 		oldTail = node.removeLast();
 		int x = node.getFirst().x;
 		int y = node.getFirst().y;
@@ -143,12 +150,10 @@ public class Snake {
 		}
 		
 		Point newHead = new Point(x, y);
-		//加头
 		node.addFirst(newHead);
 	}
 	
 	
-	//改变方向
 	public void changeDirection(int direction) {
 			newDirection = direction;		
 	}
@@ -157,13 +162,18 @@ public class Snake {
 	public void eatFood() {		
 		node.addLast(oldTail);
 		foodcount++;
+		foodNum = new Random().nextInt(5);
+		
+		//加速
+		if(sleepTime>30)
+		{
+			sleepTime -= 20;
+		}
 	}
-	//speed up
-	if(sleepTime>30)
-	{
-		sleepTime = 650-foodcount*15;
+	
+	public int getFoodNum(){
+		return foodNum;
 	}
-}
 	
 	public int getFoodCount() {
 		return foodcount;
@@ -235,9 +245,8 @@ public class Snake {
 	
 	
 	public void begin() {
-		t=new Thread(new SnakeDriver()).start();
+		t=new Thread(new SnakeDriver());
 		t.start();
-		
 	}
 
 	
