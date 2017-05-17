@@ -3,8 +3,10 @@ package Entities;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.util.Set;
 
 import Game.Main;
+import Listener.SnakeListener;
 
 
 public class Food extends Point{
