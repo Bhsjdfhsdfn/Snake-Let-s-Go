@@ -11,7 +11,7 @@ import Entities.Food;
 import Entities.Ground;
 import Entities.Snake;
 
-public class MainPanel extends JPanel{
+public class MainPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -27,7 +27,6 @@ public class MainPanel extends JPanel{
 				* Main.UnitSize);
 		this.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
 		this.setFocusable(true);
-		
 	}
 
 
@@ -54,34 +53,30 @@ public class MainPanel extends JPanel{
 	
 	@Override
 	public void paint(Graphics g) {
-			clearDraw(g);
-					
-			if(ground != null && snake != null && food != null) {
+		clearDraw(g);
 				
-					snake.drawMe(g);
-					ground.drawMe(g);
-					food.drawMe(g);
-					
-			}
+		if(ground != null && snake != null && food != null) {
 			
-			if(snake!=null && snake.isalive()==false)  {
-				recover(g);
-			}
-	
+				snake.drawMe(g);
+				ground.drawMe(g);
+				food.drawMe(g,snake.getFoodNum());
+				
+		}
+		
+		if(snake!=null && snake.isalive()==false)  {
+			recover(g);
 		}
 
+	}
 	
-	
+	//Game Over
 	public void recover(Graphics g) {
 		clearDraw(g);
 		
-		//Game Over
+
 		g.setColor(new Color(226,211,172));
 		g.setFont(new Font("Sans Serif",Font.BOLD,60));
 		g.drawString("Game Over",175, 300);
 		
 	}
-
-
-
 }

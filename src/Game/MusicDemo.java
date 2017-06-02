@@ -11,20 +11,19 @@
  import javax.sound.sampled.SourceDataLine;
 
  public class MusicDemo {
- 	public MusicDemo()
- 	{
- 		URL musicURL = null;
- 		try{
- 			File f=new File("music/3.wav"); //将文件的地址转为URL
- 			musicURL=f.toURL();
- 			musicURL = new URL("myMusic.wmv");
- 		}catch(Exception e){
- 			//e.printStackTrace();
- 		}
- 		AudioClip ac = Applet.newAudioClip(musicURL); //得到一个播放音频的实例
- 		//ac.play();//播放一编
- 		ac.loop();//循环播放
- 		//ac.stop();//停止
- 	}
- }
-
+		public MusicDemo()
+		{
+			URL musicURL = null;
+			try{
+				File f=new File("music/3.wav"); //将文件的地址转为URL
+				musicURL=f.toURL();
+				musicURL = new URL("myMusic.wmv");
+			}catch(Exception e){
+				//e.printStackTrace();
+			}
+			AudioClip ac = Applet.newAudioClip(musicURL); //得到一个播放音频的实例
+			//ac.play();//播放一编
+			ac.loop();//循环播放
+			//ac.stop();//停止
+		}
+	}

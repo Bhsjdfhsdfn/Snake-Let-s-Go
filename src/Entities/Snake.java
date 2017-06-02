@@ -5,10 +5,12 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.Random;
 import java.util.Set;
 
 import Game.Main;
 import Listener.SnakeListener;
+
 
 
 
@@ -33,6 +35,7 @@ public class Snake {
 	private Color headColor;
 	private Color bodyColor;
 	private int sleepTime;
+	private int foodNum=new Random().nextInt(5);
 	
 	public Thread t=null;
 	
@@ -163,12 +166,17 @@ public class Snake {
 	public void eatFood() {		
 		node.addLast(oldTail);
 		foodcount++;
+		foodNum = new Random().nextInt(5);
 		
 		//加速
 		if(sleepTime>30)
 		{
-			sleepTime = 650-foodcount*15;
+			sleepTime -= 20;
 		}
+	}
+	
+	public int getFoodNum(){
+		return foodNum;
 	}
 	
 	public int getFoodCount() {
