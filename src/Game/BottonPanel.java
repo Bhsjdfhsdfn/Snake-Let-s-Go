@@ -32,12 +32,12 @@ public class BottonPanel extends JPanel{
 		startButton.setBounds(60,40, 150, 50);
 		add(startButton);
 		
-		pauseButton = new JButton("Have a rest");
+		pauseButton = new JButton("Pause");
 		pauseButton.setFont(new Font("Serif", Font.ROMAN_BASELINE ,18));
 		pauseButton.setBounds(60, 120, 150, 50);
 		add(pauseButton);	
 		
-		endButton = new JButton(" Restart ");
+		endButton = new JButton("End");
 		endButton.setFont(new Font("Serif", Font.ROMAN_BASELINE ,18));
 		endButton.setBounds(60,200,150, 50);
 		add(endButton);		
@@ -59,12 +59,10 @@ public class BottonPanel extends JPanel{
 		this.setFocusable(true);
 		
 	}
-	
-	
+
 	public JButton getStartButton() {
 		return startButton;
 	}
-
 
 	public JButton getPauseButton() {
 		return pauseButton;
@@ -75,11 +73,9 @@ public class BottonPanel extends JPanel{
 		return endButton;
 	}
 
-
 	public int getScore() {
 		return score;
 	}
-
 
 	public void setScore(int score) {
 		this.score = score;
@@ -93,6 +89,4 @@ public class BottonPanel extends JPanel{
 		g.setFont(new Font("Sans Serif",Font.BOLD,50));
 		g.drawString(score+"", 120, 450);
 	}
-	
-
 }
