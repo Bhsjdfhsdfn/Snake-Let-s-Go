@@ -43,7 +43,7 @@ public class Controller extends KeyAdapter implements SnakeListener{
 	
 
 	public void init() {
-		//��������
+	
 		musicDemo=new MusicDemo();
 		
 		bottonPanel.getStartButton().addActionListener(new startHandler());
@@ -115,7 +115,7 @@ public class Controller extends KeyAdapter implements SnakeListener{
 		if(food.isFoodEated(snake)) {
 			snake.eatFood();
 			
-			//��������ϳ���ʳ������
+			
 			LinkedList<Point> temp=snake.getNode();
 			Point p=ground.getPoint();
 			boolean isOnSnake=true;
@@ -123,13 +123,13 @@ public class Controller extends KeyAdapter implements SnakeListener{
 			{
 				for(int i=0;i<temp.size();i++)
 				{
-					//���ѡȡ��ʳ�����̰���ߵ����ϣ�����������ѭ��������һ��ѡʳ���
+					
 					if(p==temp.get(i))
 					{
 						isOnSnake=true;
 						break;
 					}
-					//������̰���ߵ����һ���ڵ���ѡȡ��ʳ��㻹�������ϣ�����Ի��Ƴ���ʳ��
+					
 					if( i==temp.size()-1 && p!=temp.get(i))
 					{
 						isOnSnake=false;
